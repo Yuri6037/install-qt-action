@@ -95,8 +95,9 @@ async function run() {
         if (tools) {
           tools.split(" ").forEach(async function(curTool) {
             let name = curTool.split('.')[2];
-            let version = curTool.split('.')[3];
-            let toolsargs = ["-O", `${dir}`, `${host}`, `tools_${name}`, `${version}`, `${curTool}`];
+            let version = curTool.split('.')[3] + "." + curTool.split('.')[4] + "." + curTool.split('.')[5];
+            let arch = "qt.tools." + name + curTool.split('.')[3] + curTool.split('.')[4];
+            let toolsargs = ["-O", `${dir}`, `${host}`, `tools_${name}`, `${version}`, `${arch}`];
             await exec.exec(`${pythonName} -m aqt tool`, toolsargs);
           });
         }
